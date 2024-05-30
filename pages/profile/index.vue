@@ -1,12 +1,11 @@
 <template>
     <div>
-        <p>this is register page</p>
+        This is profile page
     </div>
 </template>
 
 <script>
     export default {
-        middleware:['guest'],
         
     }
 </script>

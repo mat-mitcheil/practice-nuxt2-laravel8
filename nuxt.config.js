@@ -37,7 +37,17 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    './plugins/mixins/user.js',
+    './plugins/axios.js',
+    './plugins/mixins/validation.js'
   ],
+
+  router:{
+    middleware:[
+      'cleanValidationErrors',
+      'redirect',
+    ]
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -60,13 +70,21 @@ export default {
           property	: 'meta.token',
           global		: true,
                 },
-          // user : {
-          //    property: 'data',
-          // },
+          user : {
+             property: 'data',
+          },
         endpoints:{
           login:{
             url:"login",
             method:'post',
+          },
+          user:{
+            url:"user",
+            method:'get'
+          },
+          logout:{
+            url:"logout",
+            method:"post"
           }
         }
       }
