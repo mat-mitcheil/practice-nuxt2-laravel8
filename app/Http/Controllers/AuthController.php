@@ -13,8 +13,8 @@ class AuthController extends Controller{
 
     public function login(Request $request){
         $this->validate($request,[
-            'email'=> 'email|string|required',
-            'password'=> 'string|required'
+            'email'=> 'required|email|string',
+            'password'=> 'required|string'
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -37,9 +37,10 @@ class AuthController extends Controller{
                 ]
             ]);
         }
-        return response()->json([
-            'message'=>'Invalid Credentials'
-        ]);
+            return response()->json([
+                'message'=>'Invalid Credentials'
+            ],401);
+        
         
     }
 
@@ -50,6 +51,10 @@ class AuthController extends Controller{
         return response()->json([
             'message' => 'Logged out successfully'
         ]);
+    }
+
+    public function user(Request $request){
+        return new UserResource($request->user());
     }
 
 
