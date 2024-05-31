@@ -8,14 +8,12 @@ use App\Http\Requests\UpdatePostsRequest;
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        //
+        $posts = Posts::with('user')->get();
+
+        return response()->json(['data'=>$posts]);
     }
 
     /**
