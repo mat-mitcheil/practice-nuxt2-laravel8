@@ -39,7 +39,9 @@ export default {
   plugins: [
     './plugins/mixins/user.js',
     './plugins/axios.js',
-    './plugins/mixins/validation.js'
+    './plugins/mixins/validation.js',
+    '~/plugins/vuelidate.js'
+
   ],
 
   router:{
@@ -66,9 +68,9 @@ export default {
   auth: {
     strategies: {
       local:{
-        token	: {
-          property	: 'meta.token',
-          global		: true,
+          token	: {
+            property	: 'meta.token',
+            global		: true,  // Automatically set Authorization header
                 },
           user : {
              property: 'data',
